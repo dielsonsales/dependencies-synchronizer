@@ -1,0 +1,43 @@
+# macOS system files
+.DS_Store
+
+# Ruby
+*.gem
+*.rbc
+.bundle/
+vendor/
+coverage/
+tmp/
+log/
+.byebug_history
+
+# Bundler
+/.bundle/
+/Gemfile.lock
+
+# Xcode/Swift
+*.xcworkspace
+*.xcuserstate
+*.xcuserdata
+DerivedData/
+build/
+*.pbxuser
+*.mode1v3
+*.mode2v3
+*.perspectivev3
+
+# SPM
+/.build/
+Package.resolved
+
+# Editor/IDE
+*.swp
+*~
+.idea/
+.vscode/
+*.sublime-workspace
+*.sublime-project
+
+# Test output
+/spec/reports/
+test-output/
