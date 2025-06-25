@@ -10,13 +10,17 @@ The Dependencies Synchronizer tool addresses the challenge of managing module de
 
 The project consists of the following files and directories:
 
-- `bin/dependencies-synchronizer`: The executable script for the command line tool.
-- `lib/dependencies_synchronizer.rb`: Contains the main logic for reading and updating dependencies.
-- `spec/dependencies_synchronizer_spec.rb`: Contains test cases for the tool using RSpec.
 - `Gemfile`: Specifies the required gems for the project.
-- `.ruby-version`: Specifies the Ruby version compatible with the project.
-- `.gitignore`: Lists files and directories to be ignored by Git.
-- `README.md`: Documentation for the project.
+- `Makefile`: Defines common tasks (`run`, `test`, etc.).
+- `README.md`: Project documentation.
+- `file_structure.md`: Source of truth for repo layout.
+- `progress.md`: Notes on development progress.
+- `bin/dependencies-synchronizer`: The executable script for the command-line tool.
+- `lib/dependencies_synchronizer.rb`: Loads the CLI and FindCard modules.
+- `lib/dependencies_synchronizer/cli.rb`: Implements the CLI interface.
+- `lib/dependencies_synchronizer/find_card.rb`: Contains core logic to discover & display dependencies.
+- `spec/dependencies_synchronizer_spec.rb`: RSpec tests for the tool.
+- `mock_main_app/Card.rb`: Example file used for dependency scanning in tests and demos.
 
 ## Installation
 
@@ -28,7 +32,7 @@ The project consists of the following files and directories:
 
 2. Install the required gems:
    ```
-   bundle install
+   bundle install --path vendor/bundle
    ```
 
 ## Usage
@@ -36,6 +40,12 @@ The project consists of the following files and directories:
 To run the Dependencies Synchronizer tool, use the following command:
 ```
 bin/dependencies-synchronizer
+```
+
+or
+
+```
+make run
 ```
 
 This command will read the dependencies from the main application and update the module's dependency files accordingly.

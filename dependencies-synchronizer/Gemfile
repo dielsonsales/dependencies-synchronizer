@@ -1,9 +1,0 @@
-source 'https://rubygems.org'
-
-gem 'rspec', '~> 3.10'  # For testing framework
-gem 'git', '~> 1.9'     # For Git operations
-gem 'octokit', '~> 4.20' # For GitHub API interactions (if needed)
-gem 'cocoapods', '~> 1.10' # For managing CocoaPods dependencies
-gem 'swift_package_manager', '~> 1.0' # Hypothetical gem for SPM interactions
-
-# Add any additional gems required for the tool's functionality here.

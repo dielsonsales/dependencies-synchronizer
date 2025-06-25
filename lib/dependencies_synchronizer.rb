@@ -1,0 +1,3 @@
+require_relative "dependencies_synchronizer/cli"
+require_relative "dependencies_synchronizer/find_card"
+module DependenciesSynchronizer; end

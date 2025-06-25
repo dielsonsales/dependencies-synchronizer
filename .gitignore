@@ -11,6 +11,8 @@ tmp/
 log/
 .byebug_history
 
+vendor/
+
 # Bundler
 /.bundle/
 /Gemfile.lock
@@ -41,3 +43,5 @@ Package.resolved
 # Test output
 /spec/reports/
 test-output/
+
+file_structure.md

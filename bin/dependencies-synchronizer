@@ -1,0 +1,6 @@
+#!/usr/bin/env ruby
+# bin/dependencies-synchronizer
+
+require_relative "../lib/dependencies_synchronizer/cli"
+
+DependenciesSynchronizer::CLI.start(ARGV)
