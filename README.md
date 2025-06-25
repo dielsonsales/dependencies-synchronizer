@@ -1,59 +1,82 @@
 # Dependencies Synchronizer
 
-This project is a command line tool designed to update the dependencies of a module in an iOS application to match those of the main application.
+A command-line tool to sync your iOS module’s dependencies (`Podfile`, `Package.swift`, and `<ModuleName>.podspec`) with those of the main application.
 
 ## Overview
 
-The Dependencies Synchronizer tool addresses the challenge of managing module dependencies within a larger iOS application. It ensures that the module's `Podfile`, `Package.swift`, and `<ModuleName>.podspec` files are updated to reflect the dependencies used by the main application.
+The Dependencies Synchronizer addresses the challenge of maintaining consistent dependencies across iOS modules that are not standalone projects. It ensures your module always matches the main app’s dependency versions, keeping your CI and local builds in sync.
 
 ## Project Structure
 
-The project consists of the following files and directories:
-
-- `Gemfile`: Specifies the required gems for the project.
-- `Makefile`: Defines common tasks (`run`, `test`, etc.).
+- `Gemfile`: Specifies the required gems for development and testing.
+- `Makefile`: Defines common tasks (`run`, `test`, `build`, etc.).
 - `README.md`: Project documentation.
-- `file_structure.md`: Source of truth for repo layout.
-- `progress.md`: Notes on development progress.
-- `bin/dependencies-synchronizer`: The executable script for the command-line tool.
-- `lib/dependencies_synchronizer.rb`: Loads the CLI and FindCard modules.
-- `lib/dependencies_synchronizer/cli.rb`: Implements the CLI interface.
-- `lib/dependencies_synchronizer/find_card.rb`: Contains core logic to discover & display dependencies.
-- `spec/dependencies_synchronizer_spec.rb`: RSpec tests for the tool.
-- `mock_main_app/Card.rb`: Example file used for dependency scanning in tests and demos.
+- `CHANGELOG.md`: Version history and notable changes.
+- `bin/dependencies-synchronizer`: The executable CLI script.
+- `lib/dependencies_synchronizer/`: Core logic, CLI interface, and updaters.
+- `spec/`: RSpec test suite.
+- `mock_main_app/Core.rb`: Example used to simulate main app dependencies.
 
 ## Installation
 
+You can either install dependencies locally for development, or build and install the gem system-wide.
+
+### Option 1: Local Development Setup
+
 1. Clone the repository:
-   ```
+   ```bash
    git clone <repository-url>
    cd dependencies-synchronizer
    ```
 
-2. Install the required gems:
-   ```
+2. Install dependencies:
+   ```bash
    bundle install --path vendor/bundle
+   ```
+
+3. Run via:
+   ```bash
+   bundle exec ruby bin/dependencies-synchronizer
+   ```
+
+### Option 1: Local Development Setup
+
+1. Build the gem:
+   ```bash
+   make build
+   ```
+
+2. Install the gem:
+   ```bash
+   gem install ./dependencies_synchronizer-0.1.2.gem
+   ```
+
+3. Now you can run the tool globally:
+   ```bash
+   dependencies-synchronizer
    ```
 
 ## Usage
 
-To run the Dependencies Synchronizer tool, use the following command:
-```
-bin/dependencies-synchronizer
-```
-
-or
-
-```
-make run
+Run the tool from your module’s root directory:
+```bash
+dependencies-synchronizer
 ```
 
-This command will read the dependencies from the main application and update the module's dependency files accordingly.
+You’ll be prompted to provide the path to the main app on first use, which will be saved to `~/.dependencies_sync.yml`.
+
+Or run with explicit path:
+
+```bash
+dependencies-synchronizer --dir /path/to/main/app
+```
+
+This command will read the dependencies from the main application (by scanning `Core.rb`) and update the module's `Podfile`, `Package.swift`, and `.podspec` files accordingly.
 
 ## Contributing
 
-Contributions are welcome! Please open an issue or submit a pull request for any improvements or bug fixes.
+Pull requests and issues are welcome! If you find a bug or have a feature request, feel free to open a discussion or PR.
 
 ## License
 
-This project is licensed under the MIT License. See the LICENSE file for details.
+This project is licensed under the MIT License. See the [LICENSE](https://github.com/dielsonsales/dependencies-synchronizer/blob/main/LICENSE) file for details.
