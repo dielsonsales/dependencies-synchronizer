@@ -48,7 +48,7 @@ You can either install dependencies locally for development, or build and instal
 
 2. Install the gem:
    ```bash
-   gem install ./dependencies_synchronizer-0.1.2.gem
+   gem install --local ./dependencies_synchronizer-0.1.2.gem
    ```
 
 3. Now you can run the tool globally:
