@@ -7,6 +7,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
+## [0.2.0] - 2025-07-17
+### Added
+- Initial test suite using RSpec.
+
+### Changed
+- `Package.swift` updater now supports both `exact:` and `from:` version syntaxes, preserving each dependency’s original style while updating the version number.
+
 ## [0.1.2] - 2025-06-25
 ### Added
 - Initial working CLI tool to sync module dependencies with the main iOS app.

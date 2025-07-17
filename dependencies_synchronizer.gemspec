@@ -2,7 +2,7 @@
 
 Gem::Specification.new do |spec|
   spec.name          = 'dependencies_synchronizer'
-  spec.version       = '0.1.2'
+  spec.version       = '0.2.0'
   spec.authors       = ['Dielson Sales']
   spec.email         = ['dielsonscarvalho@gmail.com']
 
