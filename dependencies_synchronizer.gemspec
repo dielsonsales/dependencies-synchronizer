@@ -4,11 +4,11 @@ Gem::Specification.new do |spec|
   spec.name          = 'dependencies_synchronizer'
   spec.version       = '0.1.2'
   spec.authors       = ['Dielson Sales']
-  spec.email         = ['you@example.com']
+  spec.email         = ['dielsonscarvalho@gmail.com']
 
   spec.summary       = 'Sync your iOS module’s dependencies with the main app.'
   spec.description   = 'A CLI tool to automatically update Podfile, Package.swift, and .podspec files in your iOS modules.'
-  spec.homepage      = 'https://your.github.repo.url'
+  spec.homepage      = 'https://github.com/dielsonsales/dependencies-synchronizer'
   spec.license       = 'MIT'
 
   spec.files         = Dir['lib/**/*.rb'] + ['bin/dependencies-synchronizer']
