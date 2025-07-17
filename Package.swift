@@ -14,22 +14,10 @@ let package = Package(
         )
     ],
     dependencies: [
-        .package(
-            url: "https://github.com/YourOrg/org-ml1-dep-ios-saanalytics.git",
-            exact: "1.0.0"
-        ),
-        .package(
-            url: "https://github.com/YourOrg/org-ml1-dep-ios-sanetwork.git",
-            exact: "1.1.5"
-        ),
-        .package(
-            url: "https://github.com/YourOrg/org-ml1-dep-ios-sacordinator.git",
-            exact: "2.2.8"
-        ),
-        .package(
-            url: "https://github.com/YourOrg/org-ml1-dep-ios-saworkspace.git",
-            exact: "1.5.4"
-        )
+        .package(url: "https://github.com/YourOrg/org-ml1-dep-ios-saanalytics.git", exact: "1.0.0"),
+        .package(url: "https://github.com/YourOrg/org-ml1-dep-ios-sanetwork.git", exact: "1.1.5"),
+        .package(url: "https://github.com/YourOrg/org-ml1-dep-ios-sacordinator.git", from: "2.2.8"),
+        .package(url: "https://github.com/YourOrg/org-ml1-dep-ios-saworkspace.git", from: "1.5.4")
     ],
     targets: [
         .target(
