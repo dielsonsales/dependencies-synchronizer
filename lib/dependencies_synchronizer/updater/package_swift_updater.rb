@@ -19,8 +19,9 @@ module DependenciesSynchronizer
         end
 
         # Update exact version constraints in .package(...) entries
-        new_text = text.gsub(/\.package\(\s*url:\s*"(?<url>[^"]+)"\s*,\s*exact:\s*"(?<old_ver>[^"]+)"\s*\)/m) do |match|
+        new_text = text.gsub(/\.package\(\s*url:\s*"(?<url>[^"]+)"\s*,\s*(?<kind>exact|from):\s*"(?<old_ver>[^"]+)"\s*\)/m) do |match|
           url       = Regexp.last_match[:url]
+          kind      = Regexp.last_match[:kind]  # preserves whether it's "exact" or "from"
           package   = File.basename(url, ".git")
           product   = package_to_product[package]
           new_ver   = @deps.version_for(product)
@@ -29,7 +30,7 @@ module DependenciesSynchronizer
 
           if new_ver
             DependenciesSynchronizer::Logger.debug("→ Updating '#{package}' to version '#{new_ver}'")
-            %Q(.package(url: "#{url}", exact: "#{new_ver}"))
+            %Q(.package(url: "#{url}", #{kind}: "#{new_ver}"))
           else
             DependenciesSynchronizer::Logger.debug("→ No update found for '#{product}', keeping '#{match.strip}'")
             match
