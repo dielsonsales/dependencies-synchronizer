@@ -1,0 +1,42 @@
+require 'spec_helper'
+require_relative '../../lib/dependencies_synchronizer/updater/package_swift_updater'
+
+describe DependenciesSynchronizer::Updater::PackageSwiftUpdater do
+  let(:store) do
+    double('DependencyStore')
+  end
+
+  let(:original_package_swift) do
+    <<~SWIFT
+      .package(url: "https://github.com/YourOrg/org-ml1-dep-ios-saanalytics.git", exact: "1.0.0")
+      .product(name: "SAAnalytics", package: "org-ml1-dep-ios-saanalytics"),
+      .package(url: "https://github.com/YourOrg/org-ml1-dep-ios-sanetwork.git", exact: "1.1.5")
+      .product(name: "SANetwork", package: "org-ml1-dep-ios-sanetwork")
+    SWIFT
+  end
+
+  def with_temp_package_swift(content)
+    file = Tempfile.new('Package.swift')
+    file.write(content)
+    file.rewind
+    yield file.path
+    file.rewind
+    file.read
+  ensure
+    file.close
+    file.unlink
+  end
+
+  it 'updates exact version of dependencies in Package.swift' do
+    allow(store).to receive(:version_for).with('SAAnalytics').and_return('2.0.0')
+    allow(store).to receive(:version_for).with('SANetwork').and_return('1.1.5')
+
+    with_temp_package_swift(original_package_swift) do |path|
+      described_class.new(store).update(path)
+      updated = File.read(path)
+
+      expect(updated).to include("exact: \"2.0.0\"")
+      expect(updated).to include("exact: \"1.1.5\"")
+    end
+  end
+end
